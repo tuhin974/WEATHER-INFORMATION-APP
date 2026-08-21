@@ -3,28 +3,23 @@ import pandas as pd
 
 def create_dataframe(weather_list):
     """
-    Convert weather data list into DataFrame
+    Convert weather data list into a Pandas DataFrame.
     """
 
-    df = pd.DataFrame(weather_list)
+    if not weather_list:
+        return pd.DataFrame()
 
-    return df
+    return pd.DataFrame(weather_list)
 
 
 def clean_data(df):
     """
-    Clean and preprocess data
+    Clean and preprocess weather data.
     """
 
-    df.dropna(inplace=True)
+    if df.empty:
+        return df
+
+    df = df.dropna().copy()
 
     return df
-
-
-def basic_analysis(df):
-    """
-    Display basic statistics
-    """
-
-    print("\nBasic Statistics:\n")
-    print(df.describe())
